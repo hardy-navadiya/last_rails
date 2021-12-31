@@ -1,0 +1,29 @@
+<% if logged_in? %>
+  <%= form_with model:@micropost do |f| %>
+   
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    </div>
+    <%= f.submit "Post",class: "btn btn-primary" %>
+  <% end %>
+
+ 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feed_items.each do |feeds| %>
+        <tr>
+          <th scope="row"><%= feeds.id %></th>
+          <td><%= feeds.content %></td>
+          <td><%= button_to "delete", destroy_path, method: :delete, confirm:"you sure" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
